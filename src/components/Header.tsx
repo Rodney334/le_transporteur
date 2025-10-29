@@ -105,18 +105,18 @@ const Header = () => {
       {isMenuOpen && (
         <div className="lg:hidden bg-white shadow-lg">
           <nav className="flex flex-col px-6 py-4 space-y-4">
-            <a
-              href="#"
+            <Link
+              href="/actualites"
               className="text-gray-900 hover:text-orange-500 transition py-2 border-b border-gray-100"
             >
               Actualités
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/rejoignez-nous"
               className="text-gray-900 hover:text-orange-500 transition py-2 border-b border-gray-100"
             >
               Rejoignez–nous
-            </a>
+            </Link>
             {/* <a
               href="#"
               className="text-gray-900 hover:text-orange-500 transition py-2 border-b border-gray-100"
