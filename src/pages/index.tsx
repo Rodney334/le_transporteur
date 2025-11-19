@@ -16,6 +16,32 @@ import FaqSection from "@/components/FaqSection";
 import OrderSection from "@/components/OrderSection";
 import { ActualiteCardProps } from "@/types/actualiteCardTypes";
 
+export const cardActualilteList: ActualiteCardProps[] = [
+  {
+    id: 1,
+    titre: "Entreprise Cliente",
+    image: "/assets/storie1.png",
+    description:
+      "La négociation tarifaire est un vrai plus. Je peux discuter directement avec le livreur et trouver le meilleur prix pour mes envois réguliers.",
+  },
+
+  {
+    id: 2,
+    titre: "Client Particulier",
+    image: "/assets/storie2.png",
+    description:
+      "Le suivi en temps réel m'a sauvé plusieurs fois. Je sais exactement où en est ma commande à tout moment.",
+  },
+
+  {
+    id: 3,
+    titre: "Partenaire Commercial",
+    image: "/assets/storie3.png",
+    description:
+      "Interface simple, processus clair, et surtout la transparence totale sur les tarifs. C'est exactement ce qu'il nous fallait.",
+  },
+];
+
 export default function LeTransporteur() {
   // const [active, setActive] = useState("Clients");
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -62,32 +88,8 @@ export default function LeTransporteur() {
   ];
 
   const titre = "LE TRANSPORTEUR";
-  const sousTitre = `Plateforme digitale de services logistiques au Bénin, Togo et Congo.\n Membre du Groupe SEED.`;
-  const cardActualilteList: ActualiteCardProps[] = [
-    {
-      id: 1,
-      titre: "Entreprise Cliente",
-      image: "/assets/storie1.png",
-      description:
-        "La négociation tarifaire est un vrai plus. Je peux discuter directement avec le livreur et trouver le meilleur prix pour mes envois réguliers.",
-    },
+  const sousTitre = `TRANSPORT- LOGISTIQUE - SERVICE POSTAL`;
 
-    {
-      id: 2,
-      titre: "Client Particulier",
-      image: "/assets/storie2.png",
-      description:
-        "Le suivi en temps réel m'a sauvé plusieurs fois. Je sais exactement où en est ma commande à tout moment.",
-    },
-
-    {
-      id: 3,
-      titre: "Partenaire Commercial",
-      image: "/assets/storie3.png",
-      description:
-        "Interface simple, processus clair, et surtout la transparence totale sur les tarifs. C'est exactement ce qu'il nous fallait.",
-    },
-  ];
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}

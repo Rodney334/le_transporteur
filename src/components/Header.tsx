@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Link from "next/link";
+import logo from "@/../public/assets/logo.png";
+import Image from "next/image";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,11 +13,7 @@ const Header = () => {
           {/* Logo */}
           <Link href="/">
             <div className="flex items-center">
-              <img
-                src="assets/logo.png"
-                alt="Le Transporteur"
-                className="h-12"
-              />
+              <Image src={logo} alt="Le Transporteur" height={75} />
             </div>
           </Link>
 

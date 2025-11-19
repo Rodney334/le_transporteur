@@ -1,13 +1,16 @@
 import { useState } from "react";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    country: "Bénin",
+    objet: "",
     message: "",
   });
+  const [phone, setPhone] = useState("");
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -23,16 +26,14 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FD481A] p-6 md:p-12 lg:p-16">
+    <div className="min-h-screen p-6 md:p-12 lg:p-16">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           {/* Colonne gauche - Texte et image */}
-          <div className="text-white space-y-6">
-            <div className="text-sm tracking-wider uppercase">Contact</div>
-
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              contactez-nous
-            </h1>
+          <div className="space-y-6">
+            <h3 className="text-[#FD481A] md:text-4xl text-2xl font-bold leading-tight">
+              CONTACTEZ-NOUS
+            </h3>
 
             <p className="text-base md:text-lg leading-relaxed max-w-xl">
               Une question sur votre commande ou besoin d'assistance ? Notre
@@ -56,12 +57,12 @@ const ContactForm = () => {
           </div>
 
           {/* Colonne droite - Formulaire */}
-          <div className="space-y-6">
+          <div className="bg-gray-900 text-white rounded-3xl p-8 md:p-10 space-y-6">
             <div className="space-y-5">
               {/* Nom et prénom */}
               <div>
                 <label className="block text-white text-sm font-medium mb-2">
-                  Nom et prénom
+                  Nom et Prénom(s)
                 </label>
                 <input
                   type="text"
@@ -70,6 +71,26 @@ const ContactForm = () => {
                   onChange={handleChange}
                   className="w-full px-4 py-3.5 rounded-lg border-0 focus:ring-2 focus:ring-white focus:outline-none text-gray-900 bg-white"
                   placeholder="Ex: Jhon Dee"
+                />
+              </div>
+
+              {/* Téléphone */}
+              <div>
+                <label className="block text-white text-sm font-medium mb-2">
+                  Téléphone
+                </label>
+                <PhoneInput
+                  international
+                  defaultCountry="BJ"
+                  value={phone}
+                  onCountryChange={(country) => {
+                    console.log({ country });
+                  }}
+                  onChange={(e) => {
+                    console.log({ value: e });
+                  }}
+                  className="w-full px-4 py-3.5 rounded-lg border-0 focus:ring-2 focus:ring-white focus:outline-none text-gray-900 bg-white"
+                  placeholder="Ex: +229 00 00 00 00"
                 />
               </div>
 
@@ -88,38 +109,19 @@ const ContactForm = () => {
                 />
               </div>
 
-              {/* Téléphone */}
+              {/* Objet */}
               <div>
                 <label className="block text-white text-sm font-medium mb-2">
-                  Téléphone
+                  Objet
                 </label>
                 <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
+                  type="text"
+                  name="objet"
+                  value={formData.objet}
                   onChange={handleChange}
                   className="w-full px-4 py-3.5 rounded-lg border-0 focus:ring-2 focus:ring-white focus:outline-none text-gray-900 bg-white"
-                  placeholder="Ex: 00 00 00 00 00"
+                  placeholder="Ex: Prendre contact"
                 />
-              </div>
-
-              {/* Pays */}
-              <div>
-                <label className="block text-white text-sm font-medium mb-2">
-                  Pays
-                </label>
-                <select
-                  name="country"
-                  value={formData.country}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3.5 rounded-lg border-0 focus:ring-2 focus:ring-white focus:outline-none text-gray-900 appearance-none bg-white"
-                >
-                  <option>Bénin</option>
-                  <option>France</option>
-                  <option>Belgique</option>
-                  <option>Suisse</option>
-                  <option>Luxembourg</option>
-                </select>
               </div>
 
               {/* Message */}
@@ -140,7 +142,7 @@ const ContactForm = () => {
               {/* Bouton Soumettre */}
               <button
                 onClick={handleSubmit}
-                className="w-full bg-black text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-900 transition-colors text-base"
+                className="w-full bg-[#FD481A] text-white px-8 py-4 rounded-xl font-semibold hover:bg-orange-600 transition-colors text-lg mt-4"
               >
                 Soumettre
               </button>

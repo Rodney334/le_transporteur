@@ -1,5 +1,6 @@
 import { ActualiteCardProps, ActualiteProps } from "@/types/actualiteCardTypes";
 import Image from "next/image";
+import Link from "next/link";
 
 const ActualiteCard = ({
   titre,
@@ -7,36 +8,39 @@ const ActualiteCard = ({
   image,
   id,
 }: ActualiteCardProps) => {
-  const seeMore = (id: string | number) => {
-    console.log(id);
-  };
   return (
-    <div className="bg-white border-2 border-black rounded-2xl shadow-md overflow-hidden w-full max-w-sm transition hover:shadow-xl">
-      {/* Contenu haut */}
+    <div className="bg-white border-2 border-black rounded-2xl shadow-md overflow-hidden w-full max-w-sm transition hover:shadow-xl flex flex-col h-[450px]">
+      {/* Image - Hauteur fixe */}
       <div className="relative w-full h-48">
         <Image
           src={image as string}
-          alt="Transport Rapide"
+          alt={titre}
           fill
           className="object-cover"
         />
       </div>
-      <h3 className="text-lg font-semibold text-black text-center mt-3">
-        {titre}
-      </h3>
-      <div className="p-4">
-        {/* Description */}
-        <p className="text-sm text-gray-700 leading-relaxed">{description}</p>
+
+      {/* Titre - Hauteur fixe */}
+      <div className="h-16 px-4 pt-4 flex items-center justify-center">
+        <h3 className="text-lg font-semibold text-black text-center line-clamp-2 leading-tight">
+          {titre}
+        </h3>
       </div>
-      <div className="bg-white text-center">
-        <div className="px-4 mb-2">
-          <button
-            onClick={() => seeMore(id)}
-            className="w-full bg-[#F3F6F5] text-orange-700 px-6 py-3 rounded-lg font-semibold transition-colors"
-          >
-            Voir Plus
-          </button>
-        </div>
+
+      {/* Description - Hauteur flexible avec scroll si nécessaire */}
+      <div className="flex-1 px-4 py-3 min-h-0">
+        <p className="text-sm text-gray-700 leading-relaxed h-full overflow-y-auto">
+          {description}
+        </p>
+      </div>
+
+      {/* Bouton - Hauteur fixe en bas */}
+      <div className="h-16 px-4 pb-4 flex items-center">
+        <button className="w-full bg-[#F3F6F5] text-orange-700 px-6 py-3 rounded-lg font-semibold transition-colors hover:bg-[#E8ECEB]">
+          <Link href={`/actualite/${id}`} className="block w-full">
+            Lire
+          </Link>
+        </button>
       </div>
     </div>
   );

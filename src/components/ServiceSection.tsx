@@ -5,25 +5,25 @@ import { ServiceCardProps } from "@/types/serviceCardTypes";
 const serviceList: ServiceCardProps[] = [
   {
     id: 1,
-    titre: "Courrier Express",
+    titre: "LOGISTIQUE",
     description:
-      "Envoi et réception de documents avec suivi GPS en temps réel et négociation tarifaire flexible.",
+      "Entreposage et gestion de stock des produits de nos partenaires/Clients",
     cardImage: "/assets/livraison1.png",
     iconImage: "/assets/icone1.png",
   },
   {
     id: 2,
-    titre: "Livraison Colis",
+    titre: "TRANSPORT",
     description:
-      "Transport sécurisé de vos colis avec validation tarifaire par double saisie client-livreur.",
+      "Livraison de colis ou repas d'un point à un autre avec possibilité de suivi de la commande",
     cardImage: "/assets/livraison2.png",
     iconImage: "/assets/icone2.png",
   },
   {
     id: 3,
-    titre: "Transport Logistique",
+    titre: "SERVICE POSTAL",
     description:
-      "Solutions complètes de transport à domicile avec gestion automatisée et facturation intégrée.",
+      "Distribution de courriers, factures ou tout autre type de document régi par l'Autorité de Régulation des Communications Électroniques et de la Poste (ARCEP) en République du BENIN par Décision N°2020-263/ARCEP/PT/SE/DAF/DEM/DJPC/BAP/GU du 03 Septembre 2020",
     cardImage: "/assets/livraison3.png",
     iconImage: "/assets/icone3.png",
   },
@@ -37,38 +37,39 @@ const ServiceCard = ({
   id,
 }: ServiceCardProps) => {
   return (
-    <div className="bg-white border-2 border-black rounded-2xl shadow-md overflow-hidden w-full max-w-sm transition hover:shadow-xl">
-      {/* Contenu haut */}
-      <div className="p-6">
-        {/* Etoile + titre */}
-        <div className="flex items-center gap-2 mb-3">
-          <div className="relative w-5 h-5">
+    <div className="bg-white flex flex-col justify-between border-2 border-black rounded-2xl shadow-md overflow-hidden w-full max-w-sm transition hover:shadow-xl h-full min-h-[400px]">
+      {/* Section Titre - Toujours en haut */}
+      <div className="px-6 pt-6 pb-4 flex-shrink-0">
+        <div className="flex items-center gap-3">
+          <div className="relative w-6 h-6 flex-shrink-0">
             <Image
-              src={iconImage} // ton image étoile
+              src={iconImage}
               alt="icône étoile"
               fill
               className="object-contain"
             />
           </div>
-          <h3 className="text-lg font-semibold text-gray-900">{titre}</h3>
+          <h3 className="text-lg font-bold text-gray-900 leading-tight">
+            {titre}
+          </h3>
         </div>
-
-        {/* Description */}
-        <p className="text-sm text-gray-700 leading-relaxed">{description}</p>
-
-        {/* Lien En savoir plus */}
-        <button className="flex items-center mt-6 gap-2 text-sm font-medium text-gray-900 hover:underline">
-          EN SAVOIR PLUS
-        </button>
       </div>
 
-      {/* Image du bas (pleine largeur) */}
-      <div className="relative w-full h-48">
+      {/* Section Description - Au milieu avec espace flexible */}
+      <div className="px-6 py-4 flex-grow flex items-center">
+        <p className="text-sm text-gray-700 leading-relaxed line-clamp-5">
+          {description}
+        </p>
+      </div>
+
+      {/* Section Image - Toujours en bas */}
+      <div className="relative w-full h-48 flex-shrink-0 mt-auto">
         <Image
-          src={cardImage} // ton image réelle
-          alt="Transport Rapide"
+          src={cardImage}
+          alt={`Service ${titre}`}
           fill
           className="object-cover"
+          priority={id === 1}
         />
       </div>
     </div>
@@ -94,7 +95,7 @@ const ServiceSection = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {serviceList.map((item, index) => (
             <ServiceCard
-              key={index}
+              key={item.id}
               id={item.id}
               iconImage={item.iconImage}
               cardImage={item.cardImage}

@@ -5,38 +5,46 @@ const partenaireCardList: mapCardTypes[] = [
   {
     titre: "Bol'Art",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
+    link: "https://www.facebook.com/share/17kFRMFpz4/",
   },
   {
     titre: "Black Mix Food -BMF",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
+    link: "https://www.facebook.com/share/17WomqU6xZ/",
   },
   {
     titre: "Kotò",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
+    link: "https://www.facebook.com/share/1HEFzLmQk7/",
   },
   {
     titre: "MARCY'S BENIN",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
+    link: "https://www.facebook.com/share/1JzHLbUNV1/",
   },
   {
     titre: "CHEZ LES Tout-Petits",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
+    link: "#",
   },
   {
     titre: "Freshsalad229",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
+    link: "https://www.facebook.com/share/15qSVW5CAG/",
   },
   {
     titre: "ICare",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
+    link: "https://www.facebook.com/share/16BkvhGWNq/",
   },
   {
     titre: "FEEXPAY",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
+    link: "https://www.facebook.com/share/17BxDbpjNY/",
   },
 ];
 
-const PartenairesCard = ({ titre, icon }: mapCardTypes) => {
+const PartenairesCard = ({ titre, icon, link }: mapCardTypes) => {
   return (
     <div className="flex items-center justify-between border border-black/20 rounded-lg px-4 py-4 bg-white">
       {/* Texte à gauche */}
@@ -47,7 +55,9 @@ const PartenairesCard = ({ titre, icon }: mapCardTypes) => {
       {/* Icône panier ronde à droite */}
       <div className="flex-shrink-0 ml-4">
         <div className="w-10 h-10 rounded-full bg-[#F2FCF9] flex items-center justify-center shadow-sm">
-          {icon}
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            {icon}
+          </a>
         </div>
       </div>
     </div>
@@ -87,6 +97,7 @@ const MapSection = () => {
                   key={index}
                   titre={item.titre}
                   icon={item.icon}
+                  link={item.link}
                 />
               ))}
             </div>

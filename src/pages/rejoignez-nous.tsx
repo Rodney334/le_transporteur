@@ -47,12 +47,14 @@ export default function RejoignezNous() {
                     onClick={() => setActive(label)}
                     role="tab"
                     aria-selected={isActive}
-                    className={
-                      "text-sm md:text-base px-4 md:px-6 py-2 rounded-full font-medium transition pointer cursor-pointer" +
-                      (isActive
-                        ? "bg-black text-white shadow-[0_6px_18px_rgba(0,0,0,0.45)]"
-                        : "text-white/90 hover:text-white")
-                    }
+                    className={`
+                      text-sm md:text-base px-4 md:px-6 py-2 rounded-full font-medium transition pointer cursor-pointer
+                      ${
+                        isActive
+                          ? "bg-black text-white shadow-[0_6px_18px_rgba(0,0,0,0.45)]"
+                          : "text-white/90 hover:text-white"
+                      }
+                    `}
                   >
                     {label}
                   </button>
