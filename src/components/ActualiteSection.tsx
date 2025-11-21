@@ -22,7 +22,7 @@ const ActualiteCard = ({
 
       {/* Titre - Hauteur fixe */}
       <div className="h-16 px-4 pt-4 flex items-center justify-center">
-        <h3 className="text-lg font-semibold text-black text-center line-clamp-2 leading-tight">
+        <h3 className="text-lg font-semibold text-center line-clamp-2 leading-tight">
           {titre}
         </h3>
       </div>
