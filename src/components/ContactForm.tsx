@@ -26,12 +26,12 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="min-h-screen p-6 md:p-12 lg:p-16">
+    <div className="bg-[#FD481A] text-white min-h-screen p-6 md:p-12 lg:p-16">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           {/* Colonne gauche - Texte et image */}
           <div className="space-y-6">
-            <h3 className="text-[#FD481A] md:text-4xl text-2xl font-bold leading-tight">
+            <h3 className="md:text-4xl text-2xl font-bold leading-tight">
               CONTACTEZ-NOUS
             </h3>
 
@@ -57,7 +57,7 @@ const ContactForm = () => {
           </div>
 
           {/* Colonne droite - Formulaire */}
-          <div className="bg-gray-900 text-white rounded-3xl p-8 md:p-10 space-y-6">
+          <div className="bg-[#131313] rounded-3xl p-8 md:p-10 space-y-6">
             <div className="space-y-5">
               {/* Nom et prénom */}
               <div>

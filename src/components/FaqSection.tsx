@@ -105,7 +105,7 @@ const FaqSection = () => {
 
         {/* Reps Section */}
         <div>
-          <h2 className="text-4xl font-bold text-orange-500 mb-6">Reps.</h2>
+          <h2 className="text-4xl font-bold text-orange-500 mb-6">Reponses.</h2>
           {selectedResponse && (
             <div className="bg-gray-900 text-white rounded-2xl p-6 relative transition-all duration-300 animate-fadeIn">
               {/* Bouton fermer avec animation simple */}

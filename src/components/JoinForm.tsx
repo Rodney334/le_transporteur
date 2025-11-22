@@ -56,7 +56,7 @@ const JoinForm = () => {
 
           {/* Colonne droite - Formulaire */}
           <div>
-            <div className="bg-gray-900 rounded-3xl p-8 md:p-10 space-y-6">
+            <div className="bg-[#131313] rounded-3xl p-8 md:p-10 space-y-6">
               {/* Nom et prénom */}
               <div>
                 <label className="block text-white text-sm font-medium mb-2">
