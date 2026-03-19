@@ -17,6 +17,7 @@ const ActualiteCard = ({
           alt={titre}
           fill
           className="object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 384px"
         />
       </div>
 
@@ -64,6 +65,7 @@ const ActualiteSection = ({ data }: ActualiteProps) => {
               alt="Pizza icon"
               fill
               className="object-contain"
+              sizes="72px"
             />
           </div>
         </div>

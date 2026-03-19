@@ -66,13 +66,17 @@ const Header = () => {
 
           {/* Desktop: Boutons à droite */}
           <div className="hidden lg:flex items-center space-x-6">
-            <button className="text-black font text-sm hover:opacity-80 transition">
-              Se Connecter
-            </button>
-            <button className="bg-orange-500 text-white px-6 py-3 rounded-md text-sm hover:bg-orange-600 transition flex items-center space-x-2">
-              <span>Commande Express</span>
+            {/* <button className="bg-orange-500 text-white px-6 py-3 rounded-md text-sm hover:bg-orange-600 transition flex items-center space-x-2">
+              <span>Commande</span>
               <ChevronDown size={18} />
-            </button>
+            </button> */}
+            <a
+              href="https://transporteur-backoffice.vercel.app/login"
+              target="_blank"
+              className="bg-orange-500 text-white px-6 py-3 rounded-md text-sm text-center hover:bg-orange-600 transition w-full"
+            >
+              Commande
+            </a>
           </div>
 
           {/* Mobile: Langue + Menu Hamburger */}
@@ -113,7 +117,7 @@ const Header = () => {
               href="/rejoignez-nous"
               className="text-gray-900 hover:text-orange-500 transition py-2 border-b border-gray-100"
             >
-              Rejoignez–nous
+              Rejoignez-nous
             </Link>
             {/* <a
               href="#"
@@ -133,12 +137,19 @@ const Header = () => {
             >
               Contact
             </a> */}
-            <button className="text-gray-900 text-left hover:text-orange-500 transition py-2 border-b border-gray-100">
+            {/* <button className="text-gray-900 text-left hover:text-orange-500 transition py-2 border-b border-gray-100">
               Se Connecter
-            </button>
-            <button className="bg-orange-500 text-white px-6 py-3 rounded-md text-sm hover:bg-orange-600 transition w-full">
-              Commande Express
-            </button>
+            </button> */}
+            <a
+              href="https://transporteur-backoffice.vercel.app/login"
+              target="_blank"
+              className="bg-orange-500 text-white px-6 py-3 rounded-md text-sm text-center hover:bg-orange-600 transition w-full"
+            >
+              Commande
+            </a>
+            {/* <button className="bg-orange-500 text-white px-6 py-3 rounded-md text-sm hover:bg-orange-600 transition w-full">
+              Commande
+            </button> */}
           </nav>
         </div>
       )}

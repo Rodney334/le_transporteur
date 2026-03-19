@@ -9,9 +9,16 @@ const OrderSection = () => {
         </h3>
 
         <div className="space-y-3 mb-8 relative z-10">
-          <button className="bg-white text-black px-6 py-3 rounded-lg flex items-center space-x-2 font-medium text-sm w-fit">
-            <span>Commande Express</span>
-          </button>
+          {/* <button className="bg-white text-black px-6 py-3 rounded-lg flex items-center space-x-2 font-medium text-sm w-fit">
+            <span>Commande</span>
+          </button> */}
+          <a
+            href="https://transporteur-backoffice.vercel.app/login"
+            target="_blank"
+            className="bg-white text-black px-6 py-3 rounded-lg flex items-center space-x-2 font-medium text-sm w-fit"
+          >
+            Commande
+          </a>
           {/* <button className="bg-white text-black px-6 py-3 rounded-lg flex items-center space-x-2 font-medium text-sm w-fit">
                   <span>▶</span>
                   <span>Download on App Store</span>

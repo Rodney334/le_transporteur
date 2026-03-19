@@ -47,6 +47,7 @@ const ServiceCard = ({
               alt="icône étoile"
               fill
               className="object-contain"
+              sizes="24px"
             />
           </div>
           <h3 className="text-lg font-bold text-gray-900 leading-tight">
@@ -70,6 +71,7 @@ const ServiceCard = ({
           fill
           className="object-cover"
           priority={id === 1}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 384px"
         />
       </div>
     </div>

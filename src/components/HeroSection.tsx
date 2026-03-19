@@ -12,6 +12,7 @@ const HeroSection = ({ image, titre, sousTitre }: HeroPropsType) => {
           fill
           className="object-cover object-center"
           priority
+          sizes="100vw"
         />
       </div>
 
