@@ -5,20 +5,72 @@ import "react-phone-number-input/style.css";
 
 const JoinForm = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    fullName: "",
     email: "",
-    phone: "",
     country: "Bénin",
-    position: "",
+    appliedPosition: "Coursier",
   });
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState<string | undefined>("");
+  const [status, setStatus] = useState<{
+    type: "idle" | "loading" | "success" | "error";
+    message?: string;
+  }>({ type: "idle" });
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    if (!phone) {
+      setStatus({ type: "error", message: "Le numéro de téléphone est requis." });
+      return;
+    }
+
+    setStatus({ type: "loading" });
+
+    try {
+      const response = await fetch(
+        "https://letransporteur-production.up.railway.app/api/v1/formssubmition",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            type: "network_join",
+            ...formData,
+            phoneNumber: phone,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        setStatus({
+          type: "success",
+          message: "Votre demande a été envoyée avec succès !",
+        });
+        setFormData({
+          fullName: "",
+          email: "",
+          country: "Bénin",
+          appliedPosition: "Coursier",
+        });
+        setPhone("");
+      } else {
+        const errorData = await response.json().catch(() => ({}));
+        setStatus({
+          type: "error",
+          message: errorData.message || "Une erreur est survenue lors de l'envoi.",
+        });
+      }
+    } catch (error) {
+      setStatus({
+        type: "error",
+        message: "Impossible de contacter le serveur. Veuillez réessayer plus tard.",
+      });
+    }
   };
 
-  const handleChange = (e: any) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -56,7 +108,10 @@ const JoinForm = () => {
 
           {/* Colonne droite - Formulaire */}
           <div>
-            <div className="bg-[#131313] rounded-3xl p-8 md:p-10 space-y-6">
+            <form
+              onSubmit={handleSubmit}
+              className="bg-[#131313] rounded-3xl p-8 md:p-10 space-y-6"
+            >
               {/* Nom et prénom */}
               <div>
                 <label className="block text-white text-sm font-medium mb-2">
@@ -64,8 +119,9 @@ const JoinForm = () => {
                 </label>
                 <input
                   type="text"
-                  name="name"
-                  value={formData.name}
+                  name="fullName"
+                  required
+                  value={formData.fullName}
                   onChange={handleChange}
                   className="w-full px-6 py-4 rounded-xl border-0 focus:ring-2 focus:ring-orange-500 focus:outline-none text-gray-900 text-base bg-white"
                   placeholder="Ex: Jhon Dee"
@@ -81,12 +137,7 @@ const JoinForm = () => {
                   international
                   defaultCountry="BJ"
                   value={phone}
-                  onCountryChange={(country) => {
-                    console.log({ country });
-                  }}
-                  onChange={(e) => {
-                    console.log({ value: e });
-                  }}
+                  onChange={setPhone}
                   className="w-full px-4 py-3.5 rounded-lg border-0 focus:ring-2 focus:ring-white focus:outline-none text-gray-900 bg-white"
                   placeholder="Ex: +229 00 00 00 00"
                 />
@@ -100,6 +151,7 @@ const JoinForm = () => {
                 <input
                   type="email"
                   name="email"
+                  required
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full px-6 py-4 rounded-xl border-0 focus:ring-2 focus:ring-orange-500 focus:outline-none text-gray-900 text-base bg-white"
@@ -122,7 +174,7 @@ const JoinForm = () => {
                   <option value="Togo">Togo</option>
                   <option value="Congo Brazaville">Congo Brazaville</option>
                 </select>
-                <ChevronDown className="absolute right-6 top-1/2 w-6 h-6 text-gray-400 pointer-events-none" />
+                <ChevronDown className="absolute right-6 top-12 w-6 h-6 text-gray-400 pointer-events-none" />
               </div>
 
               {/* Je postule pour le poste de */}
@@ -131,8 +183,8 @@ const JoinForm = () => {
                   Je postule pour le poste de....
                 </label>
                 <select
-                  name="position"
-                  value={formData.position}
+                  name="appliedPosition"
+                  value={formData.appliedPosition}
                   onChange={handleChange}
                   className="w-full px-2 py-4 rounded-xl border-0 focus:ring-2 focus:ring-orange-500 focus:outline-none text-gray-900 appearance-none bg-white text-base"
                 >
@@ -145,17 +197,33 @@ const JoinForm = () => {
                   <option value="Commercial">Commercial</option>
                   <option value="Assistant RH">Assistant RH</option>
                 </select>
-                <ChevronDown className="absolute right-6 top-1/2 w-6 h-6 text-gray-400 pointer-events-none" />
+                <ChevronDown className="absolute right-6 top-12 w-6 h-6 text-gray-400 pointer-events-none" />
               </div>
+
+              {/* Status Message */}
+              {status.type !== "idle" && (
+                <div
+                  className={`p-4 rounded-lg text-sm font-medium ${
+                    status.type === "success"
+                      ? "bg-green-100 text-green-700"
+                      : status.type === "error"
+                      ? "bg-red-100 text-red-700"
+                      : "bg-blue-100 text-blue-700"
+                  }`}
+                >
+                  {status.type === "loading" ? "Envoi en cours..." : status.message}
+                </div>
+              )}
 
               {/* Bouton Soumettre */}
               <button
-                onClick={handleSubmit}
-                className="w-full bg-[#FD481A] text-white px-8 py-4 rounded-xl font-semibold hover:bg-orange-600 transition-colors text-lg mt-4"
+                type="submit"
+                disabled={status.type === "loading"}
+                className="w-full bg-[#FD481A] text-white px-8 py-4 rounded-xl font-semibold hover:bg-orange-600 transition-colors text-lg mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Soumettre
+                {status.type === "loading" ? "Chargement..." : "Soumettre"}
               </button>
-            </div>
+            </form>
           </div>
         </div>
       </div>

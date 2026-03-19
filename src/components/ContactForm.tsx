@@ -4,21 +4,72 @@ import "react-phone-number-input/style.css";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    fullName: "",
     email: "",
-    phone: "",
-    objet: "",
+    subject: "",
     message: "",
   });
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState<string | undefined>("");
+  const [status, setStatus] = useState<{
+    type: "idle" | "loading" | "success" | "error";
+    message?: string;
+  }>({ type: "idle" });
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Ajoutez ici votre logique de soumission
+    if (!phone) {
+      setStatus({ type: "error", message: "Le numéro de téléphone est requis." });
+      return;
+    }
+
+    setStatus({ type: "loading" });
+
+    try {
+      const response = await fetch(
+        "https://letransporteur-production.up.railway.app/api/v1/formssubmition",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            type: "contact",
+            ...formData,
+            phoneNumber: phone,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        setStatus({
+          type: "success",
+          message: "Votre message a été envoyé avec succès !",
+        });
+        setFormData({
+          fullName: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+        setPhone("");
+      } else {
+        const errorData = await response.json().catch(() => ({}));
+        setStatus({
+          type: "error",
+          message: errorData.message || "Une erreur est survenue lors de l'envoi.",
+        });
+      }
+    } catch (error) {
+      setStatus({
+        type: "error",
+        message: "Impossible de contacter le serveur. Veuillez réessayer plus tard.",
+      });
+    }
   };
 
-  const handleChange = (e: any) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -57,7 +108,10 @@ const ContactForm = () => {
           </div>
 
           {/* Colonne droite - Formulaire */}
-          <div className="bg-[#131313] rounded-3xl p-8 md:p-10 space-y-6">
+          <form
+            onSubmit={handleSubmit}
+            className="bg-[#131313] rounded-3xl p-8 md:p-10 space-y-6"
+          >
             <div className="space-y-5">
               {/* Nom et prénom */}
               <div>
@@ -66,8 +120,9 @@ const ContactForm = () => {
                 </label>
                 <input
                   type="text"
-                  name="name"
-                  value={formData.name}
+                  name="fullName"
+                  required
+                  value={formData.fullName}
                   onChange={handleChange}
                   className="w-full px-4 py-3.5 rounded-lg border-0 focus:ring-2 focus:ring-white focus:outline-none text-gray-900 bg-white"
                   placeholder="Ex: Jhon Dee"
@@ -83,12 +138,7 @@ const ContactForm = () => {
                   international
                   defaultCountry="BJ"
                   value={phone}
-                  onCountryChange={(country) => {
-                    console.log({ country });
-                  }}
-                  onChange={(e) => {
-                    console.log({ value: e });
-                  }}
+                  onChange={setPhone}
                   className="w-full px-4 py-3.5 rounded-lg border-0 focus:ring-2 focus:ring-white focus:outline-none text-gray-900 bg-white"
                   placeholder="Ex: +229 00 00 00 00"
                 />
@@ -102,6 +152,7 @@ const ContactForm = () => {
                 <input
                   type="email"
                   name="email"
+                  required
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full px-4 py-3.5 rounded-lg border-0 focus:ring-2 focus:ring-white focus:outline-none text-gray-900 bg-white"
@@ -116,8 +167,9 @@ const ContactForm = () => {
                 </label>
                 <input
                   type="text"
-                  name="objet"
-                  value={formData.objet}
+                  name="subject"
+                  required
+                  value={formData.subject}
                   onChange={handleChange}
                   className="w-full px-4 py-3.5 rounded-lg border-0 focus:ring-2 focus:ring-white focus:outline-none text-gray-900 bg-white"
                   placeholder="Ex: Prendre contact"
@@ -131,6 +183,7 @@ const ContactForm = () => {
                 </label>
                 <textarea
                   name="message"
+                  required
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
@@ -139,15 +192,31 @@ const ContactForm = () => {
                 />
               </div>
 
+              {/* Status Message */}
+              {status.type !== "idle" && (
+                <div
+                  className={`p-4 rounded-lg text-sm font-medium ${
+                    status.type === "success"
+                      ? "bg-green-100 text-green-700"
+                      : status.type === "error"
+                      ? "bg-red-100 text-red-700"
+                      : "bg-blue-100 text-blue-700"
+                  }`}
+                >
+                  {status.type === "loading" ? "Envoi en cours..." : status.message}
+                </div>
+              )}
+
               {/* Bouton Soumettre */}
               <button
-                onClick={handleSubmit}
-                className="w-full bg-[#FD481A] text-white px-8 py-4 rounded-xl font-semibold hover:bg-orange-600 transition-colors text-lg mt-4"
+                type="submit"
+                disabled={status.type === "loading"}
+                className="w-full bg-[#FD481A] text-white px-8 py-4 rounded-xl font-semibold hover:bg-orange-600 transition-colors text-lg mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Soumettre
+                {status.type === "loading" ? "Chargement..." : "Soumettre"}
               </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
