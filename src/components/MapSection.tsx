@@ -3,48 +3,56 @@ import { ArrowUpRight } from "lucide-react";
 
 const partenaireCardList: mapCardTypes[] = [
   {
+    id: 1,
     titre: "Bol'Art",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
     link: "https://www.facebook.com/share/17kFRMFpz4/",
   },
   {
-    titre: "Black Mix Food -BMF",
+    id: 2,
+    titre: "Black Mix Food - BMF",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
     link: "https://www.facebook.com/share/17WomqU6xZ/",
   },
   {
+    id: 3,
     titre: "Kotò",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
     link: "https://www.facebook.com/share/1HEFzLmQk7/",
   },
   {
+    id: 4,
     titre: "MARCY'S BENIN",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
     link: "https://www.facebook.com/share/1JzHLbUNV1/",
   },
   {
+    id: 5,
     titre: "CHEZ LES Tout-Petits",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
     link: "#",
   },
   {
+    id: 6,
     titre: "Freshsalad229",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
     link: "https://www.facebook.com/share/15qSVW5CAG/",
   },
   {
+    id: 7,
     titre: "ICare",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
     link: "https://www.facebook.com/share/16BkvhGWNq/",
   },
   {
+    id: 8,
     titre: "FEEXPAY",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
     link: "https://www.facebook.com/share/17BxDbpjNY/",
   },
 ];
 
-const PartenairesCard = ({ titre, icon, link }: mapCardTypes) => {
+const PartenairesCard = ({ id, titre, icon, link }: mapCardTypes) => {
   return (
     <div className="flex items-center justify-between border border-black/20 rounded-lg px-4 py-4 bg-white">
       {/* Texte à gauche */}
@@ -95,6 +103,7 @@ const MapSection = () => {
               {partenaireCardList.map((item, index) => (
                 <PartenairesCard
                   key={index}
+                  id={item.id}
                   titre={item.titre}
                   icon={item.icon}
                   link={item.link}

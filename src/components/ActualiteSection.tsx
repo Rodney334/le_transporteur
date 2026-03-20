@@ -1,19 +1,20 @@
-import { ActualiteCardProps, ActualiteProps } from "@/types/actualiteCardTypes";
+import { Actualite } from "@/types/actualite";
 import Image from "next/image";
 import Link from "next/link";
 
 const ActualiteCard = ({
   titre,
-  description,
-  image,
+  contenu,
+  imageUrl,
   id,
-}: ActualiteCardProps) => {
+}: Actualite) => {
+  const description = contenu[0] || "";
   return (
     <div className="bg-white border-2 border-black rounded-2xl shadow-md overflow-hidden w-full max-w-sm transition hover:shadow-xl flex flex-col h-[450px]">
       {/* Image - Hauteur fixe */}
       <div className="relative w-full h-48">
         <Image
-          src={image as string}
+          src={imageUrl}
           alt={titre}
           fill
           className="object-cover"
@@ -47,7 +48,7 @@ const ActualiteCard = ({
   );
 };
 
-const ActualiteSection = ({ data }: ActualiteProps) => {
+const ActualiteSection = ({ data }: { data: Actualite[] }) => {
   return (
     <section
       id="services"
@@ -72,13 +73,10 @@ const ActualiteSection = ({ data }: ActualiteProps) => {
 
         <div className="grid md:grid-cols-3 gap-8">
           {/* Carte */}
-          {data.map((item, index) => (
+          {data.map((item) => (
             <ActualiteCard
-              key={index}
-              description={item.description}
-              image={item.image}
-              titre={item.titre}
-              id={item.id}
+              key={item.id}
+              {...item}
             />
           ))}
         </div>

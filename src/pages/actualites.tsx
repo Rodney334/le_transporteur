@@ -9,6 +9,8 @@ import ActualiteSection from "@/components/ActualiteSection";
 import { ActualiteCardProps } from "@/types/actualiteCardTypes";
 import FaqSection from "@/components/FaqSection";
 
+import { actualites } from "@/data/actualites";
+
 export default function LeTransporteur() {
   const [active, setActive] = useState("Clients"); // "Clients" sélectionné par défaut
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -54,31 +56,6 @@ export default function LeTransporteur() {
       answer: "",
     },
   ];
-  const cardActualilteList: ActualiteCardProps[] = [
-    {
-      id: 1,
-      titre: "Entreprise Cliente",
-      image: "/assets/storie1.png",
-      description:
-        "La négociation tarifaire est un vrai plus. Je peux discuter directement avec le livreur et trouver le meilleur prix pour mes envois réguliers.",
-    },
-
-    {
-      id: 2,
-      titre: "Client Particulier",
-      image: "/assets/storie2.png",
-      description:
-        "Le suivi en temps réel m'a sauvé plusieurs fois. Je sais exactement où en est ma commande à tout moment.",
-    },
-
-    {
-      id: 3,
-      titre: "Partenaire Commercial",
-      image: "/assets/storie3.png",
-      description:
-        "Interface simple, processus clair, et surtout la transparence totale sur les tarifs. C'est exactement ce qu'il nous fallait.",
-    },
-  ];
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -99,7 +76,7 @@ export default function LeTransporteur() {
               Nos actualités récentes
             </h2>
           </div>
-          <ActualiteSection data={cardActualilteList} />
+          <ActualiteSection data={actualites} />
           <div className="grid md:grid-cols-3 gap-8"></div>
         </div>
       </section>

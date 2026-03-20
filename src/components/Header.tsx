@@ -44,7 +44,7 @@ const Header = () => {
                 href="/rejoignez-nous"
                 className="hover:text-orange-500 transition"
               >
-                Rejoignez–nous
+                Rejoignez-nous
               </Link>
               {/* <Link
                 href="/devenir-partenaire"
