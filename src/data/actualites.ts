@@ -3,7 +3,7 @@ import { Actualite } from "@/types/actualite";
 export const actualites: Actualite[] = [
   {
     id: 1,
-    auteur: "SEED GROUP",
+    auteur: "Le transporteur",
     date: "21 octobre 2024",
     titre: "Partenariat Stratégique avec GAB Assurance",
     contenu: [
@@ -14,5 +14,20 @@ export const actualites: Actualite[] = [
     ],
     hashtags: ["#seedgroup", "#gabassurance", "#collabo"],
     imageUrl: "/assets/actualites/actualite_01.jpg", // "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&h=600&fit=crop",
+  },
+  {
+    id: 2,
+    auteur: "Le transporteur",
+    date: "26 septembre 2024",
+    titre: "Conformité APDP : Protection de vos Données",
+    contenu: [
+      "Nous avons le plaisir de vous annoncer que SEED BENIN SAS a obtenu ses numéros de conformité, délivrés par l'Agence de Protection des Données à caractère Personnel (APDP).",
+      "Lesdits numéros prouvent notre engagement à nous conformer aux législations en vigueur dans chaque pays où nous intervenons et à protéger les informations sensibles que nous manipulons dans le cadre de nos rapports avec nos clients et partenaires :",
+      "- notre site web www.letrans-porteur.com est déclaré conforme par Extrait de Délibération N°2024-209/AT/APDP/DST/SC du 26 Septembre 2024 ;",
+      "- notre Application Mobile Le Transporteur (disponible sur Playstore et Apple Store) est déclarée conforme par Extrait de Délibération N°2024-207/AT/APDP/DST/SC du 26 Septembre 2024.",
+      "Cette conformité vise à garantir la protection des informations des visiteurs et/ou utilisateurs de nos différentes plateformes et renforcer la sécurité des données de nos clients.",
+    ],
+    hashtags: ["#SEEDBENIN", "#APDP", "#Conformité", "#ProtectionDonnées"],
+    imageUrl: "/assets/actualites/actualite_02.png",
   },
 ];
