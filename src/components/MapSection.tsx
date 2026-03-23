@@ -6,55 +6,91 @@ const partenaireCardList: mapCardTypes[] = [
     id: 1,
     titre: "Bol'Art",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
-    link: "https://www.facebook.com/share/17kFRMFpz4/",
+    link: "https://www.facebook.com/profile.php?id=100025078226957",
   },
   {
     id: 2,
-    titre: "Black Mix Food - BMF",
+    titre: "Black Mix Food",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
-    link: "https://www.facebook.com/share/17WomqU6xZ/",
+    link: "https://www.facebook.com/BMFOFFICIEL",
   },
   {
     id: 3,
-    titre: "Kotò",
+    titre: "KÔTÔ",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
-    link: "https://www.facebook.com/share/1HEFzLmQk7/",
+    link: "https://www.facebook.com/SAVONKOTO",
   },
   {
     id: 4,
     titre: "MARCY'S BENIN",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
-    link: "https://www.facebook.com/share/1JzHLbUNV1/",
+    link: "https://www.facebook.com/Marcysfashionsstore",
   },
   {
     id: 5,
-    titre: "CHEZ LES Tout-Petits",
+    titre: "FRESH SALAD",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
-    link: "#",
+    link: "https://www.facebook.com/freshsalad229",
   },
   {
     id: 6,
-    titre: "Freshsalad229",
+    titre: "FEEXPAY",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
-    link: "https://www.facebook.com/share/15qSVW5CAG/",
+    link: "https://www.facebook.com/feexpay",
   },
   {
     id: 7,
-    titre: "ICare",
+    titre: "BABKI",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
-    link: "https://www.facebook.com/share/16BkvhGWNq/",
+    link: "https://www.facebook.com/babkishop",
   },
   {
     id: 8,
-    titre: "FEEXPAY",
+    titre: "LINA Accessories",
     icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
-    link: "https://www.facebook.com/share/17BxDbpjNY/",
+    link: "https://www.facebook.com/POIDY229",
+  },
+  {
+    id: 9,
+    titre: "AriCare and Events",
+    icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
+    link: "https://www.facebook.com/aricareandvents",
+  },
+  {
+    id: 10,
+    titre: "Des Bijoux et Moi",
+    icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
+    link: "https://www.facebook.com/desbijouxetmoi",
+  },
+  {
+    id: 11,
+    titre: "VILLANELLE",
+    icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
+    link: "https://www.facebook.com/myvillanelle",
+  },
+  {
+    id: 12,
+    titre: "IFÈ NUTRITION",
+    icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
+    link: "https://www.facebook.com/IFENUTRITIONBIENETRE",
+  },
+  {
+    id: 13,
+    titre: "JERRY SINCLAIR",
+    icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
+    link: "https://www.facebook.com/Jsaguenoukoun",
+  },
+  {
+    id: 14,
+    titre: "FENU STYLE",
+    icon: <ArrowUpRight width={30} height={30} color="#FD481A" />,
+    link: "https://www.facebook.com/fenustyle",
   },
 ];
 
 const PartenairesCard = ({ id, titre, icon, link }: mapCardTypes) => {
   return (
-    <div className="flex items-center justify-between border border-black/20 rounded-lg px-4 py-4 bg-white">
+    <div className="flex items-center justify-between border border-black/20 rounded-lg px-4 py-2.5 bg-white">
       {/* Texte à gauche */}
       <div className="text-left">
         <p className="text-sm text-black">{titre}</p>
@@ -74,12 +110,12 @@ const PartenairesCard = ({ id, titre, icon, link }: mapCardTypes) => {
 
 const MapSection = () => {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Conteneur général avec border noir */}
-        <div className="flex flex-col md:flex-row border-2 border-black overflow-hidden rounded-2xl">
+        <div className="flex flex-col md:flex-row border-2 border-black overflow-hidden rounded-2xl h-auto md:h-[540px]">
           {/* Image à gauche */}
-          <div className="md:w-1/2 aspect-video">
+          <div className="md:w-1/2 h-[300px] md:h-full">
             <img
               src="assets/map.png"
               alt="Carte"
@@ -97,8 +133,8 @@ const MapSection = () => {
 
             {/* Contenu — zone scrollable si besoin */}
             <div
-              className="p-6 space-y-4"
-              style={{ maxHeight: "calc(100% - 72px)" }}
+              className="p-6 space-y-4 overflow-y-auto h-[350px] md:h-full"
+              style={{ maxHeight: "calc(100% - 64px)" }}
             >
               {partenaireCardList.map((item, index) => (
                 <PartenairesCard

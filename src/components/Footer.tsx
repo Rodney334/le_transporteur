@@ -61,7 +61,7 @@ const Footer = () => {
               </li>
               <li className="hover:text-white cursor-pointer">
                 <a
-                  href="/docs/2- MENTIONS LÉGALES - Site (New).pdf"
+                  href="/docs/1- MENTIONS LEGALES.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -70,20 +70,20 @@ const Footer = () => {
               </li>
               <li className="hover:text-white cursor-pointer">
                 <a
-                  href="/docs/3- POLITIQUES DE CONFIDENTIALITÉ.pdf"
+                  href="/docs/2- CONDITIONS GENERALES.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Politique de Confidentialité
+                  Conditions Générales
                 </a>
               </li>
               <li className="hover:text-white cursor-pointer">
                 <a
-                  href="/docs/4- CONDITIONS GÉNÉRALES.pdf"
+                  href="/docs/3- POLITIQUES DE CONFIDENTIALITE.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Conditions Générales de Vente (CGV)
+                  Politique de Confidentialité
                 </a>
               </li>
             </ul>
@@ -96,17 +96,20 @@ const Footer = () => {
             </h4>
             <ul className="space-y-2 text-gray-400 text-sm">
               <li>
-                <a href="#" className="hover:text-white cursor-pointer">
+                <Link
+                  href={`/rejoignez-nous`}
+                  className="hover:text-white cursor-pointer"
+                >
                   Livreurs
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/actualites"
                   className="hover:text-white cursor-pointer"
                 >
                   Actualités
-                </a>
+                </Link>
               </li>
               <li>
                 <a
