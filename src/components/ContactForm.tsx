@@ -18,7 +18,10 @@ const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!phone) {
-      setStatus({ type: "error", message: "Le numéro de téléphone est requis." });
+      setStatus({
+        type: "error",
+        message: "Le numéro de téléphone est requis.",
+      });
       return;
     }
 
@@ -26,7 +29,7 @@ const ContactForm = () => {
 
     try {
       const response = await fetch(
-        "https://letransporteur-production.up.railway.app/api/v1/formssubmition",
+        "backend.letrans-porteur.com/api/v1/formssubmition",
         {
           method: "POST",
           headers: {
@@ -37,7 +40,7 @@ const ContactForm = () => {
             ...formData,
             phoneNumber: phone,
           }),
-        }
+        },
       );
 
       if (response.ok) {
@@ -56,19 +59,21 @@ const ContactForm = () => {
         const errorData = await response.json().catch(() => ({}));
         setStatus({
           type: "error",
-          message: errorData.message || "Une erreur est survenue lors de l'envoi.",
+          message:
+            errorData.message || "Une erreur est survenue lors de l'envoi.",
         });
       }
     } catch (error) {
       setStatus({
         type: "error",
-        message: "Impossible de contacter le serveur. Veuillez réessayer plus tard.",
+        message:
+          "Impossible de contacter le serveur. Veuillez réessayer plus tard.",
       });
     }
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setFormData({
       ...formData,
@@ -199,11 +204,13 @@ const ContactForm = () => {
                     status.type === "success"
                       ? "bg-green-100 text-green-700"
                       : status.type === "error"
-                      ? "bg-red-100 text-red-700"
-                      : "bg-blue-100 text-blue-700"
+                        ? "bg-red-100 text-red-700"
+                        : "bg-blue-100 text-blue-700"
                   }`}
                 >
-                  {status.type === "loading" ? "Envoi en cours..." : status.message}
+                  {status.type === "loading"
+                    ? "Envoi en cours..."
+                    : status.message}
                 </div>
               )}
 
