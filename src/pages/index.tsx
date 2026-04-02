@@ -32,7 +32,7 @@ export default function LeTransporteur() {
 
   const prevSlide = () => {
     setCurrentSlide(
-      (prev) => (prev - 1 + carouselImages.length) % carouselImages.length
+      (prev) => (prev - 1 + carouselImages.length) % carouselImages.length,
     );
   };
   const [activeQuestion, setActiveQuestion] = useState<number | null>(null);

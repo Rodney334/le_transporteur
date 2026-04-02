@@ -13,7 +13,7 @@ const OrderSection = () => {
             <span>Commande</span>
           </button> */}
           <a
-            href="dashboard.letrans-porteur.com/login"
+            href="https://dashboard.letrans-porteur.com/login"
             target="_blank"
             className="bg-white text-black px-6 py-3 rounded-lg flex items-center space-x-2 font-medium text-sm w-fit"
           >

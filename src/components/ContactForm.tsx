@@ -29,7 +29,7 @@ const ContactForm = () => {
 
     try {
       const response = await fetch(
-        "backend.letrans-porteur.com/api/v1/formssubmition",
+        "https://backend.letrans-porteur.com/api/v1/formssubmition",
         {
           method: "POST",
           headers: {
