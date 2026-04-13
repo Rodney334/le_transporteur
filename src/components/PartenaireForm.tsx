@@ -30,7 +30,8 @@ const PartenaireForm = () => {
 
     try {
       const response = await fetch(
-        "https://backend.letrans-porteur.com/api/v1/formssubmition",
+        "https://letransporteur-production.up.railway.app/api/v1/formssubmition",
+        // "https://backend.letrans-porteur.com/api/v1/formssubmition",
         {
           method: "POST",
           headers: {
